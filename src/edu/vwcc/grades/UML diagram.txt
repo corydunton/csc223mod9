@@ -1,0 +1,37 @@
++--------------------------------+
+|           Gradebook            |
++--------------------------------+
+| - students: List<Student>      |<>------------\
++--------------------------------+				|
+| + addStudent(Student): void    |				|
+| + calculateFinalGrade(Student) |				|
+| + printGradebook(): void       |				|
+| + getFailingStudents(): List<Student> 		|
+| + getBestPerformingStudent(): Student 		|
+| + getWorstPerformingStudent(): Student 		|
+| + giveExtraCredit ? 			 |				|
+| 								 |				|
++--------------------------------+				|
+												|
+												|
+												|
+												|
++-------------------------------+				|
+|            Student            |---------------/
++-------------------------------+
+| - name: String                |
+| - grades: Map<String, Integer>|
+| - attendance: Set<LocalDate>  |
+| + NUM_IN_PERSON_CLASSES: int  |
++-------------------------------+
+| + Student(String): Constructor|
+| + getStudentGrade(String): Integer 
+| + setStudentGrade(String, Integer)
+| + setGrades(int[]): void      |
+| + markStudentPresent(LocalDate)
+| + getName(): String           |
+| + setName(String): void       |
+| + getGrades(): Map<String, Integer> 
+| + getAttendance(): Set<LocalDate> |
++-------------------------------+
+
