@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 /**
  * Program Name: STUDENT GRADEBOOK PROGRAM
- * Your Name: 
- * Your Date:
+ * Your Name: Cory Dunton
+ * Your Date: 11/1/2023
  * 
  * INSTRUCTIONS:
  * You are a new Java developer assigned the Task of completing this Student Gradebook program 
@@ -51,8 +51,7 @@ public class Main {
                     for (int i = 0; i < NUM_STUDENTS; i++) {
                         System.out.print("Enter the name of student " + (i + 1) + ": ");
                         String name = scanner.nextLine();
-                        
-                        // TODO Create a new Student object and add it to Gradebook's students list
+                        Student student = new Student(name);
                     }
                     break;
 
@@ -62,7 +61,12 @@ public class Main {
                         System.out.println("Error: No students available.");
                         break;
                     }
-                    // TODO Use your DataLoader's generateGrades() and set each Student's grades (you can iterate or create your own helper methods in Student)
+                    
+                    for (Student student : gradebook.getStudents()) {
+                    	int[] grades = DataLoader.generateGrades();
+                    	student.setGrades(grades);
+                    }
+                    
                     break;
 
                 case 3:
@@ -72,6 +76,11 @@ public class Main {
                         break;
                     }
                     // TODO
+                    for (Student student : gradebook.getStudents()) {
+                    	for (Integer grade : student.getGrades().values()) {
+                    		System.out.println(grade);
+                    	}
+                    }
                     break;
 
                 case 4:

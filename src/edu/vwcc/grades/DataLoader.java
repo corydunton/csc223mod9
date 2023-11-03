@@ -1,7 +1,9 @@
 package edu.vwcc.grades;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -18,9 +20,16 @@ public class DataLoader {
      */
     public static int[] generateGrades() {
 
-        // TODO
+        List<Integer> gradesList = new ArrayList<>();
+        Random rand = new Random();
+        
+        for (int i = 0; i < 10; i++) {
+        	gradesList.add(rand.nextInt(50, 101));
+        }
+        
+        int[] grades = gradesList.stream().mapToInt(Integer::intValue).toArray();
     	
-    	return null;
+    	return grades;
     }
     
     /**

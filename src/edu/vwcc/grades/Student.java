@@ -62,7 +62,15 @@ public class Student {
      * Sets all grades of a student at once with the given key
      */
     public void setGrades(int[] intArr) {
-		// TODO 
+        if (intArr.length != grades.size()) {
+            throw new IllegalArgumentException("Number of grades does not match the number of keys in the map");
+        }
+
+        int count = 0;
+        for (String assignment : grades.keySet()) {
+            grades.put(assignment, intArr[count]);
+            count++;
+        }
 	}
     
 
@@ -74,8 +82,9 @@ public class Student {
     }
     
     // TODO Create your own helper method to count number of Absences for a Student given just their String name
-
-    
+    public int getNumAbsences() {
+    	return 15 - attendance.size();
+    }    
     
     // GETTERS AND SETTERS
     public String getName() {

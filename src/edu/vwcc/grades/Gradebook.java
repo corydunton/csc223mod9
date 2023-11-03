@@ -42,33 +42,87 @@ public class Gradebook {
      * Retrieves a list of students with a final grade below 70
      */
     public List<Student> getFailingStudents() {
-        // TODO: Implement the method to get a list of failing students
-        return null; 
+    	List<Student> failingStudents = new ArrayList<>();
+    	
+    	for (Student student : this.students) {
+    		boolean isFailing = false;
+    		for (Integer grade : student.getGrades().values()) {
+    			if (grade < 70) {
+    				isFailing = true;
+    				break;
+    			}
+    		}
+    		
+    		if (isFailing) {
+    			failingStudents.add(student);
+    		}
+    	}
+    	
+        return failingStudents; 
     }
 
     /**
      * Find the best performing student based on final grades
      */
     public Student getBestPerformingStudent() {
-        // TODO: Implement the method to find the best performing student
-        return null; 
+    	Student bestPerformingStudent = this.students.get(0);
+    	
+    	for (Student student : this.students) {
+    		int bestPerformingStudentGrades = bestPerformingStudent.getGrades().values().stream()
+    				.mapToInt(Integer::intValue)
+    				.sum();
+    		int currentStudentGrades = student.getGrades().values().stream()
+    				.mapToInt(Integer::intValue)
+    				.sum();
+    		if (currentStudentGrades > bestPerformingStudentGrades) {
+    			bestPerformingStudent = student;
+    		}
+    	}
+    	
+        return bestPerformingStudent; 
     }
 
     /**
      * Find the worst performing student based on final grades
      */
     public Student getWorstPerformingStudent() {
-        // TODO: Implement the method to find the worst performing student
-        return null;
+    	Student worstPerformingStudent = this.students.get(0);
+    	
+    	for (Student student : this.students) {
+    		int worstPerformingStudentGrades = worstPerformingStudent.getGrades().values().stream()
+    				.mapToInt(Integer::intValue)
+    				.sum();
+    		int currentStudentGrades = student.getGrades().values().stream()
+    				.mapToInt(Integer::intValue)
+    				.sum();
+    		if (currentStudentGrades < worstPerformingStudentGrades) {
+    			worstPerformingStudent = student;
+    		}
+    	}
+    	
+        return worstPerformingStudent; 
+    
     }
     
     /**
      * Give extra credit points to Students based on Good Attendance
      *
      */
-    
-    // TODO
-
-    
+    public void giveExtraCredit() {
+    	int goodAttendance = 10;
+    	int extraCredit = 10;
+    	
+    	for (Student student : this.students) {
+    		if (student.getAttendance().size() < goodAttendance) continue;
+    		
+    		for (String clazz : student.getGrades().keySet()) {
+    			Integer grade = student.getGrades().get(clazz);
+    			grade = grade + extraCredit;
+    			if (grade > 100) {
+    				grade = 100;
+    			}
+    			student.getGrades().put(clazz, grade);
+    		}    		
+    	}    	
+    }    
 }
-
