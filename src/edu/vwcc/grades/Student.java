@@ -2,107 +2,94 @@ package edu.vwcc.grades;
 
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class Student {
-    private String name;
-    private final Map<String, Integer> grades; 
-    private final Set<LocalDate> attendance;
-    public static final int NUM_IN_PERSON_CLASSES = 15;
-    
 
-    public Student(String name) { // constructor to initialize fields
-        this.name = name;
-        
-        this.grades = new HashMap<>();
-        grades.put("Homework1", null);
-        grades.put("Quiz1", null);
-        grades.put("Homework2", null);
-        grades.put("Quiz2", null);
-        grades.put("MidtermExam", null);
-        grades.put("Homework3", null);
-        grades.put("Quiz3", null);
-        grades.put("Homework4", null);
-        grades.put("Quiz4", null);
-        grades.put("FinalExam", null);
+	private String name;
+	private final Map<String, Integer> grades;
+	private final Set<LocalDate> attendance;
+	public static final int NUM_IN_PERSON_CLASSES = 15;
 
-        this.attendance = DataLoader.generateAttendanceRecords();
-    }
+	public Student(String name) { // constructor to initialize fields
+		this.name = name;
 
+		this.grades = new HashMap<>();
+		grades.put("Homework1", null);
+		grades.put("Quiz1", null);
+		grades.put("Homework2", null);
+		grades.put("Quiz2", null);
+		grades.put("MidtermExam", null);
+		grades.put("Homework3", null);
+		grades.put("Quiz3", null);
+		grades.put("Homework4", null);
+		grades.put("Quiz4", null);
+		grades.put("FinalExam", null);
 
-    // HELPER METHODS
-
-    /**
-     * Returns the grade of a student with the given key.
-     */
-    public Integer getStudentGrade(String key) {
-        if (grades.containsKey(key)) {
-            return grades.get(key);
-        } else {
-            throw new IllegalArgumentException("Invalid key: " + key);
-        }
-    }
-
-    /**
-     * Sets the grade of a student with the given key to the int value
-     */
-    public void setStudentGrade(String key, Integer value) {
-        if (grades.containsKey(key)) {
-            grades.put(key, value);
-        } else {
-            throw new IllegalArgumentException("Invalid key: " + key);
-        }
-    }
-    
-    
-    // TODO Implement the following Helper method:
-    /**
-     * Sets all grades of a student at once with the given key
-     */
-    public void setGrades(int[] intArr) {
-        if (intArr.length != grades.size()) {
-            throw new IllegalArgumentException("Number of grades does not match the number of keys in the map");
-        }
-
-        int count = 0;
-        for (String assignment : grades.keySet()) {
-            grades.put(assignment, intArr[count]);
-            count++;
-        }
+		this.attendance = DataLoader.generateAttendanceRecords();
 	}
-    
 
-    /**
-     * Marks a student as present on a given date.
-     */
-    public void markStudentPresent(LocalDate date) {
-        attendance.add(date);
-    }
-    
-    // TODO Create your own helper method to count number of Absences for a Student given just their String name
-    public int getNumAbsences() {
-    	return 15 - attendance.size();
-    }    
-    
-    // GETTERS AND SETTERS
-    public String getName() {
-        return name;
-    }
+	// HELPER METHODS
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	/**
+	 * Returns the grade of a student with the given key.
+	 */
+	public Integer getStudentGrade(String key) {
+		if (grades.containsKey(key)) {
+			return grades.get(key);
+		} else {
+			throw new IllegalArgumentException("Invalid key: " + key);
+		}
+	}
 
-    public Map<String, Integer> getGrades() {
-        return grades;
-    }
+	/**
+	 * Sets the grade of a student with the given key to the int value
+	 */
+	public void setStudentGrade(String key, Integer value) {
+		if (grades.containsKey(key)) {
+			grades.put(key, value);
+		} else {
+			throw new IllegalArgumentException("Invalid key: " + key);
+		}
+	}
 
-    public Set<LocalDate> getAttendance() {
-        return attendance;
-    }
+	/**
+	 * Sets all grades of a student at once with the given key
+	 */
+	public void setGrades(int[] intArr) {
+		int count = 0;
+		for (var grade : grades.entrySet()) {
+			grade.setValue(intArr[count]);
+			count++;
+		}
+	}
 
+	/**
+	 * Marks a student as present on a given date.
+	 */
+	public void markStudentPresent(LocalDate date) {
+		attendance.add(date);
+	}
 
+	public int getNumAbsences() {
+		return 15 - attendance.size();
+	}
 
+	// GETTERS AND SETTERS
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Map<String, Integer> getGrades() {
+		return grades;
+	}
+
+	public Set<LocalDate> getAttendance() {
+		return attendance;
+	}
 }
