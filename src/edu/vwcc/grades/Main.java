@@ -86,11 +86,15 @@ public class Main {
 				break;
 
 			case 5: // Show number of absences for all students
-				// TODO
+				for (Student student : gradebook.getStudents()) {
+					int numAbsences = student.getNumAbsences();
+					System.out.println(student.getName() + " has " + numAbsences + " absences.");
+				}
 				break;
 
 			case 6: // Give extra credit for good attendance
-				// TODO
+				gradebook.giveExtraCredit();
+				System.out.println("Extra credit has been awarded to all students with attendance >= 10 days.");
 				break;
 
 			case 7: // Show best and worst final grade
