@@ -49,8 +49,7 @@ public class Main {
 			scanner.nextLine();
 
 			switch (choice) {
-			case 1: // Please add 8 or more students, you can add more by changing NUM_STUDENTS
-					// value
+			case 1: // Please add 8 or more students, you can add more by changing NUM_STUDENTS value
 				for (int i = 0; i < NUM_STUDENTS; i++) {
 					System.out.print("Enter the name of student " + (i + 1) + ": ");
 					String name = scanner.nextLine();
